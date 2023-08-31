@@ -1,0 +1,15 @@
+- hosts: muthu
+  remote_user: ubuntu
+  become: yes
+  tasks:
+    - name: update all			      # Apt update all
+      apt:
+        update_cache: yes
+    - name: install nginx         # Installing nginx
+      apt:
+        name: nginx
+        state: present
+    - name: copying files         # Deploying the updated files 
+      copy:
+        src: ../hills/
+        dest: /var/www/html
